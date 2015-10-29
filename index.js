@@ -16,6 +16,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 let today = new Date();
 today = [today.getDate(), months[today.getMonth()], today.getFullYear()];
 today = today.join(' ');
+console.log('Today: ', today);
 let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
 yesterday = [yesterday.getDate(), months[yesterday.getMonth()], yesterday.getFullYear()];
 yesterday = yesterday.join(' ');
