@@ -12,16 +12,27 @@ const TelegramBotOptions = {
 
 let bot = new TelegramBot(TelegramBotToken, TelegramBotOptions);
 
-bot.onText(/\/new/, (msg)=>{
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+let today = new Date();
+today = [today.getDate(), months[today.getMonth()], today.getFullYear()];
+today = today.join(' ');
+
+bot.onText(/\/today/, (msg)=>{
   let chatId = msg.chat.id;
   let response = '';
 
   request('http://hdout.tv/RSS/').then(data=>{
     parseString(data.body, (err, result)=>{
-      let newEpisodes = result.rss.channel[0].item;
+      let newEpisodes = result.rss.channel[0].item.filter(item=>{
+        return item.pubDate[0].indexOf(today) > -1;
+      });
 
-      for(let i = 0; i < 10; i++){
-        response += '[' + newEpisodes[i].title + '](' + newEpisodes[i].link + ')\n\t';
+      if(newEpisodes.length){
+        newEpisodes.forEach(episode=>{
+          response += '[' + episode.title + '](' + episode.link + ')\n\t';
+        });
+      } else{
+        response = 'No new episodes';
       }
 
       bot.sendMessage(chatId, response);
