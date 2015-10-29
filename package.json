@@ -1,0 +1,21 @@
+{
+  "name": "hdouttvbot",
+  "version": "0.0.0",
+  "description": "Telegram Bot for HDOut.TV",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zmoki/HDOutTVBot.git"
+  },
+  "keywords": [
+    "telegram", "telegram bot", "bot"
+  ],
+  "author": "Zarema Khalilova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zmoki/HDOutTVBot/issues"
+  },
+  "homepage": "https://github.com/Zmoki/HDOutTVBot"
+}
